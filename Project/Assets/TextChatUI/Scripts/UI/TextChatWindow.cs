@@ -56,7 +56,7 @@ public class TextChatWindow : MonoBehaviour
         float textViewHeight = inputField.GetTextViewHeight();
         if (!inputField.IsNative())
         {
-            if (inputField.DefaultInputField.textComponent.cachedTextGeneratorForLayout.lineCount < 2) { textViewHeight = minFieldSize_; }
+            if (inputField.DefaultInputField.textComponent.textInfo.lineCount < 2) { textViewHeight = minFieldSize_; }
             else { textViewHeight = minFieldSize_ - inputField.DefaultInputField.textComponent.fontSize + textViewHeight; }
         }
         Vector2 sizeDelta = inputFieldRectTransform_.sizeDelta;

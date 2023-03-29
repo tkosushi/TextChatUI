@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Runtime.InteropServices;
 using System;
 using UnityEngine.EventSystems;
+using TMPro;
 
 /// <summary>
 /// ネイティブのテキストフィールド
@@ -35,12 +36,12 @@ public class NativeTextField : MonoBehaviour
     public bool IsInitialize { get; private set; } = false;
     public RectTransform NativeTextArea { get { return nativeTextArea; } }
     public RectTransform UnityTextArea { get { return unityTextArea; } }
-    public InputField DefaultInputField { get { return defaultInputField; } }
+    public TMP_InputField DefaultInputField { get { return defaultInputField; } }
 
     [SerializeField] private RectTransform nativeTextArea = null;
     [SerializeField] private RectTransform unityTextArea = null;
-    [SerializeField] private InputField defaultInputField = null;
-    [SerializeField] private Text unityTextAreaText = null;
+    [SerializeField] private TMP_InputField defaultInputField = null;
+    [SerializeField] private TMP_Text unityTextAreaText = null;
     [SerializeField] private Button nativeOpenButton = null;
 
     private float prevHeight_ = 0.0f;
@@ -365,7 +366,7 @@ public class NativeTextField : MonoBehaviour
     /// </summary>
     /// <param name="size"></param>
     /// <param name="color"></param>
-    public void SetTextViewFont(int size, Color color)
+    public void SetTextViewFont(float size, Color color)
     {
         // Unity上のテキストフォント設定
         color.a = defaultInputField.textComponent.color.a;
@@ -377,7 +378,7 @@ public class NativeTextField : MonoBehaviour
 
         // ネイティブのテキストフォント設定
         if (!IsNative()) { return; }
-        float nativeFontSize = (float)size;
+        float nativeFontSize = size;
         if (viewScale_ != Vector2.zero)
         {
             Vector2 globalSize = nativeTextArea.rect.size * nativeTextArea.lossyScale * viewScale_;
